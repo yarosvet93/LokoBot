@@ -74,6 +74,16 @@ if ($update['poll_answer']) {
             ____напиши @yarosvet93 свои ФИО !!!!'
         ];
         file_get_contents($url . "/sendmessage?" . http_build_query($data));
+        
+        $data = [
+            'chat_id' => '111895196',
+            'text' => 'userid =  ' . $user_id . '
+            username = ' . $username . '
+            Имя = ' . $first_name . '
+            Фамилия = ' . $last_name
+        ];
+        file_get_contents($url . "/sendmessage?" . http_build_query($data));
+
         exit;
     
     }
