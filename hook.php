@@ -48,7 +48,7 @@ if ($update['poll_answer']) {
     $first_name = $poll['user']['first_name'];
     $last_name = $poll['user']['last_name'];
     $poll_answer = $poll['option_ids'][0];
-    if ($poll_answer == ''){ $poll_answer = 9;}
+    if (!($poll_answer)){ $poll_answer = 9;}
 
     //check user in Players Table
 
