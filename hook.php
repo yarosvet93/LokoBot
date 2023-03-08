@@ -5,6 +5,7 @@ header('Content-type: text/plain; charset=utf-8');
 $chatId = $chat_id;
 $asnwer = file_get_contents("php://input");
 $update = json_decode($asnwer, TRUE);
+$db->exec("INSERT INTO tb_json (update_text) VALUES ('$asnwer')"); 
 //file_get_contents($url."/sendmessage?chat_id=" . $chat_id_my . "&text=Привет:" );
 // processing message (text)
 if ($update['message']){
@@ -48,7 +49,7 @@ if ($update['poll_answer']) {
     $first_name = $poll['user']['first_name'];
     $last_name = $poll['user']['last_name'];
     $poll_answer = $poll['option_ids'][0];
-    if (!($poll_answer)){ $poll_answer = 9;}
+    if ($poll_answer === null){ $poll_answer = 9;}
 
     //check user in Players Table
 
@@ -88,15 +89,20 @@ if ($update['poll_answer']) {
     
     }
     // add user in tb_visit or change vote
-   $select = $db->query_once("SELECT id FROM tb_visit WHERE id_training = '$poll_id' AND id = '$id'");
-    if (($select['id'])){
-        $db->exec("UPDATE tb_visit SET value_t = '$poll_answer' 
-        WHERE id_training = '$poll_id' AND id_user = '$id'");
-    }else {
-        $db->exec("INSERT INTO tb_visit (id, id_training, value_t) 
-      VALUES ('$id' , '$poll_id' , '$poll_answer')");
-    }   
+   $select_user = $db->query_once("SELECT id FROM tb_visit WHERE id_training = '$poll_id' AND id = '$id'");
+   $select_training =  $db->query_once("SELECT id_poll FROM tb_trainings WHERE id_poll = '$poll_id'");
+ if ($select_user['id']){
+     $db->exec("UPDATE tb_visit SET value_t = '$poll_answer' 
+     WHERE id_training = '$poll_id' AND id = '$id'");
+ }else {
+     if ($select_training['id_poll']){
+         $db->exec("INSERT INTO tb_visit (id, id_training, value_t) 
+             VALUES ('$id' , '$poll_id' , '$poll_answer')");
+    }
+ } 
+
 }
+
 unset($asnwer);
 unset($update);
 ?>
