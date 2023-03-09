@@ -17,8 +17,9 @@ foreach ($query AS $training) {
  curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
  curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
  curl_setopt($curl_handle, CURLOPT_USERAGENT, 'LocoBot');
- curl_exec($curl_handle);
+ $response = curl_exec($curl_handle);
  curl_close($curl_handle);
+ $db->exec("INSERT INTO tb_json (update_id, update_text) VALUES ('closepoll','$response')"); 
 }
 //file_get_contents($url."/stopPoll?chat_id=" . $chat_id . "&message_id=");
 //$URIstop_poll = "https://api.telegram.org/bot" + $token + "/stopPoll?chat_id=" + $chat_id + "&message_id=" + $poolId

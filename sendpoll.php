@@ -38,10 +38,12 @@ curl_setopt($curl_handle, CURLOPT_USERAGENT, 'LocoBot');
 $response = curl_exec($curl_handle);
 curl_close($curl_handle);
 $update = json_decode($response, true);
+$update_id = $update['result'];
 $poll_id = $update['result']['poll']['id'];
 $poll_message = $update['result']['message_id'];
 $chat_id = $update['result']['chat']['id'];
 $date_t = date('Y-m-d');
 $db->exec("INSERT INTO tb_trainings (id_poll, id_poll_message, date_t, week) 
 VALUES ('$poll_id', '$poll_message','$date_t','$week')");
+$db->exec("INSERT INTO tb_json (update_id, update_text) VALUES ('sendpoll','$response')"); 
 ?>
