@@ -3,7 +3,7 @@ require_once 'config.php';
 //require_once 'database.php';
 header('Content-type: text/plain; charset=utf-8');
 
-$url = 'https://api.telegram.org/bot5495792656:AAEoipGRKNnTpucxhHuXDggQnIMXEc4m9_8/getUpdates?offset=-1';
+$url = 'https://api.telegram.org/bot/getUpdates?offset=-1';
 
 $asnwer = '{"update_id":434276469,"poll_answer":{"poll_id":"5208886158485881335","user":{"id":111895196,"is_bot":false,"first_name":"u042fu0440u043eu0441u0432u0435u0442","last_name":"u041du043eu0432u0438u043au043eu0432","username":"yarosvet93","language_code":"ru","is_premium":true},"option_ids":[2]}}';
 $update = json_decode($asnwer, TRUE);
