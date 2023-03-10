@@ -24,8 +24,8 @@ $options =  array("$yes $plus","$no $minus","$sick $pill") ;
 $data = [
 	'chat_id' => $chat_id,
 	'question' => $str1 . '
-	' . $rugby . ' Тренировка ' //. $place . '
-	 . $time_clock . ' ' . $time_t,
+	' . $rugby . ' Тренировка ' . $place . '
+	' . $time_clock . ' ' . $time_t,
 	'options' => json_encode($options),
     'is_anonymous' => 'false'
 ];
