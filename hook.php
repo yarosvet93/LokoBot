@@ -17,6 +17,7 @@ if  (!($check_update['update_id'])){
         $chat_id = $text['chat']['id'];
         $str1 = "help";
         $str2 = "addplayer";
+        $str3 = "test";
         //$str3 = "stopnextday";
         //
         // остановить опрос 
@@ -26,23 +27,26 @@ if  (!($check_update['update_id'])){
         $pieces = explode(";", $text['text']);
     //file_get_contents($url."/sendmessage?chat_id=" . $chat_id . "&text=  это 1 СООБЩЕНИЕ " . $asnwer);
     // add user in tb_players
-    if ($pieces[0] == $str2 and $text['from']['id'] = '111895196'){
+    $check_admin = $text['from']['id'];
+    if ($pieces[0] == $str2 and  $check_admin == '111895196'){
             $user_id = $pieces[1];
             $username = $pieces[2];
             $first_name = $pieces[3];
             $last_name = $pieces[4];
             $fio = $pieces[5];
         $db->exec("INSERT INTO tb_players (id_user, username, fname, sname, fio) 
-        VALUES ('$user_id' , '$username' , '$first_name' , '$last_name' , '$fio')"); 
-            
+        VALUES ('$user_id' , '$username' , '$first_name' , '$last_name' , '$fio')");   
         }
         //  Print help
-        if ($pieces[0] == $str1){
+        if ($pieces[0] == $str1 and  $check_admin == '111895196'){
             file_get_contents($url . "/sendmessage?chat_id=" . $chat_id . "
-            &text= Add user in tb_players :%0Aaddplayer;id;username;fname;sname;F I O %0A
-            ");
-            
+            &text= Add user in tb_players :%0Aaddplayer;id;username;fname;sname;F I O %0A;"); 
         }
+
+        //if ($pieces[0] == $str3){
+        //    $name = $update['message']['from']['first_name'];
+        //    $db->exec("INSERT INTO tb_json (update_id, update_text) VALUES ('test','$name')"); 
+        // }
     }
 
     if ($update['poll_answer']) {
