@@ -8,7 +8,7 @@ $update = json_decode($asnwer, TRUE);
 $update_id =$update['update_id'];
 //проверям на дупликаты update_id
 $check_update = $db->query_once("SELECT update_id FROM tb_json WHERE update_id = '$update_id'");
-if  (!($check_update['update_id'])){
+if  (!($check_update['update_id'])){ 
     $db->exec("INSERT INTO tb_json (update_id, update_text) VALUES ('$update_id','$asnwer')"); 
     //file_get_contents($url."/sendmessage?chat_id=" . $chat_id_my . "&text=Привет:" );
     // processing message (text)
