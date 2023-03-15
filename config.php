@@ -7,6 +7,7 @@ $config = $db->query_once($select);
 $Monday = $config['monday'];
 $Wednesday = $config['wednesday'];
 $Friday = $config['friday'];
+$chat_id_girl =  $config['chat_id_girl'];
 $chat_id = $config['chat_id']; # Boltovnya
 $chat_id_my =  $config['chat_id_my'];
 $chat_id_anosova = $config['chat_id_anosova']; # anosova
