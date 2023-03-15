@@ -1,2 +1,1 @@
-# LocoBot my first project !!!
-# main file is hook.php
+# 1 набросок телеграм бота. (без функций и ООП)
