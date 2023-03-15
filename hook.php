@@ -74,7 +74,7 @@ if  (!($check_update['update_id'])){
                 case 9: $status = "Retrack Vote"; break;
             }
             $data = [
-                'chat_id' => $chat_id,
+                'chat_id' => $chat_id_girl,
                 'text' => 'Дружочек, ты не добавлен в базу:
                 username = ' . $username . '
                 Имя = ' . $first_name . '
