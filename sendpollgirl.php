@@ -1,5 +1,7 @@
 <?php
 require_once 'config.php';
+require_once 'src/Messages.php';
+use Source\Action\Message;
 header('Content-type: text/plain; charset=utf-8');
 $weekday= date('l');
 $week = date('W');
@@ -30,13 +32,8 @@ $data = [
     'is_anonymous' => 'false'
 ];
 $url = "https://api.telegram.org/bot$apiToken/sendPoll?" . http_build_query($data);
-$curl_handle=curl_init();
-curl_setopt($curl_handle, CURLOPT_URL, $url);
-curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
-curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($curl_handle, CURLOPT_USERAGENT, 'LocoBot');
-$response = curl_exec($curl_handle);
-curl_close($curl_handle);
+
+$response = Message::send($url);
 $update = json_decode($response, true);
 $update_id = $update['result'];
 $poll_id = $update['result']['poll']['id'];
