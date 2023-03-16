@@ -75,12 +75,12 @@ if  (!($check_update['update_id'])){
             }
             $data = [
                 'chat_id' => $chat_id_girl,
-                'text' => 'Дружочек, ты не добавлен в базу:
+                'text' => 'Привет. Тебя нет в базе:
                 username = ' . $username . '
                 Имя = ' . $first_name . '
                 Фамилия = ' . $last_name . '
                 Будешь ли на тренивке: ' . $status . '
-                ____напиши @yarosvet93 свои ФИО !!!!'
+                ____напиши @yarosvet93 свои ФИО, он добавит !!!!'
             ];
             file_get_contents($url . "/sendmessage?" . http_build_query($data));
             
