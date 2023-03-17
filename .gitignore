@@ -1,11 +1,9 @@
 hook.txt
-/image
 result.txt
 sendpolltest.php
 testupdate.php
 sendtext.php
 testhook.php
-/vendor
 test.php
 /.vscode
 
