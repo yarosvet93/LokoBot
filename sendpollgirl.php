@@ -6,13 +6,13 @@ use Source\Action\Message;
 use Source\Action\Poll;
 header('Content-type: text/plain; charset=utf-8');
 $data = [
-	'chat_id' => $chat_id,
+	'chat_id' => $chat_id_girl,
 	'question' => Poll::getPollQuestion(),
 	'options' => Poll::getPollOption(),
     'is_anonymous' => 'false'
 ];
 $url = $url . "/sendPoll?" . http_build_query($data);
-//$response = Message::send($url);
+$response = Message::send($url);
 $response = Message::send($url);
 $get = Poll::getJsonPoll($response);
 $poll_id = $get['poll_id'];
