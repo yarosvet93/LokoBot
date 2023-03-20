@@ -13,7 +13,6 @@ $data = [
 ];
 $url = $url . "/sendPoll?" . http_build_query($data);
 $response = Message::send($url);
-$response = Message::send($url);
 $get = Poll::getJsonPoll($response);
 $poll_id = $get['poll_id'];
 $poll_message = $get['poll_message'];
