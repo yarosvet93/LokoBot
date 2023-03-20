@@ -1,10 +1,13 @@
 hook.txt
 result.txt
 /photo
+/vendor
+/composer*
 sendpolltest.php
 testupdate.php
 sendtext.php
 testhook.php
 test.php
 /.vscode
+.env.php
 
