@@ -9,5 +9,5 @@ sendtext.php
 testhook.php
 test.php
 /.vscode
-.env.php
-
+.env
+/test
