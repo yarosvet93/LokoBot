@@ -51,11 +51,17 @@ if  (!($check_update['update_id'])){
         $username = $update['message']['from']['username'];
         $first_name = $update['message']['from']['first_name'];
         $last_name = $update['message']['from']['last_name'];
-        $db->exec("INSERT INTO tb_players (id_user, username, fname, sname, fio) 
-            VALUES ('$user_id' , '$username' , '$first_name' , '$last_name' , '$fio')");   
+        $check_user = $db->query_once("SELECT id FROM tb_players WHERE id_user = '$user_id'");
+        $id = $check_user['id'];
+            if (!($id)){
+                $db->exec("INSERT INTO tb_players (id_user, username, fname, sname, fio) 
+                    VALUES ('$user_id' , '$username' , '$first_name' , '$last_name' , '$fio')"); 
+                file_get_contents($url . "/sendmessage?chat_id=" . $user_id . "&text= СПС! Добавил.)");  
+            } else {
+                file_get_contents($url . "/sendmessage?chat_id=" . $user_id . "&text=Ты уже есть в Базе !)");
+            }
         }
     }
-
     if ($update['poll_answer']) {
         $poll = $update['poll_answer'];
         $poll_id = $poll['poll_id'];
