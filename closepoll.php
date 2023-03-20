@@ -18,13 +18,12 @@ foreach ($query AS $training) {
     'message_id' => $training['id_poll_message']
   ];	
 $url1 =  $url . "/stopPoll?" . http_build_query($data);
-print_r ($url1);
-// $response = Message::send($url1);
-// $db->exec("INSERT INTO tb_json (update_id, update_text) VALUES ('closepoll','$response')"); 
-// $update = json_decode($response, TRUE);
-// $total_voter_count = $update['result']['total_voter_count'];
-// $id = $update['result']['id'];
-// $db->exec("UPDATE tb_trainings SET total_voter_count  = '$total_voter_count'  WHERE id_poll = '$id' "); 
+$response = Message::send($url1);
+$db->exec("INSERT INTO tb_json (update_id, update_text) VALUES ('closepoll','$response')"); 
+$update = json_decode($response, TRUE);
+$total_voter_count = $update['result']['total_voter_count'];
+$id = $update['result']['id'];
+$db->exec("UPDATE tb_trainings SET total_voter_count  = '$total_voter_count'  WHERE id_poll = '$id' "); 
 
 }
 //file_get_contents($url."/stopPoll?chat_id=" . $chat_id . "&message_id=");
