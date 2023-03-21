@@ -1,6 +1,5 @@
 <?php
-
-
+Namespace Source\Action;
 Class Database {
 
     private $link;
@@ -12,9 +11,9 @@ Class Database {
 
     private function connect ()
     {
-        $config = require_once 'connect.php';
-        $dsn = 'mysql:host=' . $config['host'] . ';dbname=' . $config['db_name'] . ';charset=' . $config['charset'];
-        $this->link = new PDO($dsn, $config['username'], $config['password']);
+        $config_connect = require __DIR__ . '/connect.php';
+        $dsn = 'mysql:host=' . $config_connect['host'] . ';dbname=' . $config_connect['db_name'] . ';charset=' . $config_connect['charset'];
+        $this->link = new \PDO($dsn, $config_connect['username'], $config_connect['password']);
 
     }
 
@@ -28,7 +27,7 @@ Class Database {
     {
         $sth = $this->link->prepare($sql);
         $sth->execute();
-        $result = $sth->fetchALL(PDO::FETCH_ASSOC);
+        $result = $sth->fetchALL(\PDO::FETCH_ASSOC);
         if ($result === false){
             return[];
         }
@@ -39,7 +38,7 @@ Class Database {
     {
         $sth = $this->link->prepare($sql);
         $sth->execute();
-        $result = $sth->fetch(PDO::FETCH_ASSOC);
+        $result = $sth->fetch(\PDO::FETCH_ASSOC);
         if ($result === false){
             return[];
         }
@@ -50,6 +49,7 @@ Class Database {
 }
 
 // $db = new Database();
+// print_r ($db);
 // $user = $db->query("SELECT * FROM tb_players");
 // echo "<pre>";
 // print_r ($user);

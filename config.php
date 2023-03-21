@@ -1,6 +1,8 @@
 <?php
-include('database.php');
-$db = new Database();
+ require_once(__DIR__.'/vendor/autoload.php');
+ use Source\Action\Database;
+ $db = new Database();
+ //print_r($db);
 $select = "SELECT * FROM tb_config";
 $config = $db->query_once($select);
 // // monday wednesday friday chat_id chat_id_my chat_id_anosova chat_id_boltovnya apitoken apitoken_anosova apitoken_lokochat time_t
