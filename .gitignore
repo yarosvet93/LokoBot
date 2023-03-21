@@ -1,5 +1,7 @@
 hook.txt
 result.txt
+connect.php
+testupdate.php
 /photo
 /vendor
 /composer*
@@ -11,3 +13,5 @@ test.php
 /.vscode
 .env
 /test
+db.php
+test_index.php
