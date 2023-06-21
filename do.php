@@ -30,16 +30,16 @@
                 $date_end = $_POST['date_end']; 
                 $player_select = "SELECT fsname FROM tb_players WHERE id = $player";
                 $player_query = $db->query($player_select);
-                echo "<h4>" . $player_query['fsname'] . "</h4>";
-
                 $select = "SELECT fsname,date_t,value_v FROM tb_visit AS vt
                                 JOIN tb_players AS p ON vt.id=p.id
                                 JOIN tb_trainings AS t ON vt.id_training=t.id_poll
                                 JOIN tb_value AS v ON vt.value_t=v.id_v
                                 WHERE p.id='$player'
-                                AND date_t BETWEEN '$date_start' AND '$date_end'" . $add_value ;
+                                AND date_t BETWEEN '$date_start' AND '$date_end' $add_value 
+                                ORDER BY date_t DESC";
                 // print_r($value_visit);
                 $query = $db->query($select);
+                echo "<h4>" . $player_query[0]['fsname'] . "</h4>";
                 echo '<div class="table_result">';
                 echo '<table>';
                     echo '<tr>';
@@ -96,6 +96,7 @@
                                     AND tt.date_t 
                                     BETWEEN '$date_start' AND '$date_end' ) AS vi
                                 RIGHT JOIN tb_players tp ON vi.id = tp.id
+                                WHERE tp.gender = 'm' AND tp.active = 1
                                 GROUP BY tp.fsname
                                 ORDER BY $orderby"; 
                 //print_r($select);

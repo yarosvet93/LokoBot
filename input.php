@@ -48,7 +48,7 @@
             <form class="form_action" action="do.php" method="post">
                 <p>Посмотреть день тренировки</p>
                 <div class="select_date">
-                    <input id="date" type="date" value="2023-01-09" name="date">
+                    <input id="date" type="date" value="<?php echo date('Y-m-d'); ?>" name="date">
                 </div>
                 <div class="select_date">
                     <input class="button_all" type="submit" name="visit_d" value="Показать">
