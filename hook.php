@@ -32,13 +32,14 @@ if  (!($check_update['update_id'])){
             $first_name = $pieces[3];
             $last_name = $pieces[4];
             $fio = $pieces[5];
-            $db->exec("INSERT INTO tb_players (id_user, username, fname, sname, fio) 
-            VALUES ('$user_id' , '$username' , '$first_name' , '$last_name' , '$fio')");   
+            $fi = $pieces[6];
+            $db->exec("INSERT INTO tb_players (id_user, username, fname, sname, fio, fsname) 
+            VALUES ('$user_id' , '$username' , '$first_name' , '$last_name' , '$fio', '$fi')");   
         }
         //  Print help
         if ($pieces[0] == $str1 and  $check_admin == '111895196'){
             file_get_contents($url . "/sendmessage?chat_id=" . $chat_id . "
-            &text= Add user in tb_players :%0Aaddplayer;id;username;fname;sname;F I O %0A;"); 
+            &text= Add user in tb_players :%0Aaddplayer;id;username;fname;sname;F I O; F I%0A;"); 
         }
 
         //if ($pieces[0] == $str3){

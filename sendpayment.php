@@ -6,7 +6,7 @@ header('Content-type: text/plain; charset=utf-8');
 //$chat_id_my = '287781777';
 $file_id = 'AgACAgIAAx0CXJ6nugACEm1kFHnirgLN21ztdn96c4UZvHAjjgAC8cUxG8HTqEhEoBHwY4L2NgEAAwIAA3MAAy8E';
 $data = [
-    'chat_id' => $chat_id_my,
+    'chat_id' => $chat_id,
     'photo' => $file_id
 ];	
 $url1 = $url . "/sendPhoto?" . http_build_query($data);
@@ -23,7 +23,7 @@ $message ="Мужчины, не забываем про взносы.\n".
 "В сообщении указывайте\n" . 
 "от кого ( Фамилия Имя )";
 $data = [
-	'chat_id' => $chat_id_my,
+	'chat_id' => $chat_id,
     'text' => $message
 ];
 $url2 = $url . "/sendMessage?" . http_build_query($data);

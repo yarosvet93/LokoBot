@@ -7,6 +7,13 @@
         <style>
             <?php include 'myslyle.css'; ?>
         </style>
+        <?php
+            require_once 'database.php';
+            $db = new Database();
+            $datr_training = "SELECT date_t FROM tb_trainings ORDER BY date_t DESC LIMIT 1;";
+            $training = $db->query_once($datr_training );
+            $training_date = $training['date_t'];
+        ?>
     </head>
     <body>
         <div class="body_box">
@@ -20,21 +27,19 @@
                     <select class="select" name="player">
                         <option value=""></option>
                             <?php
-                                require_once 'database.php';
-                                $db = new Database();
                                 $fio = "SELECT id, fsname FROM tb_players where id IN (SELECT DISTINCT(id) FROM tb_visit) ORDER BY fsname";
                                 $user = $db->query($fio);
                                 foreach ($user AS $a){
                                     echo "<option value=" . $a['id'] .">" . $a['fsname'] . "</option>";
                                 }
-                        ?>
+                            ?>
                     </select>
                 </div>
                 <div class="select_date">
-                    <input id="date" type="date" value="2023-01-09" name="date_start">
+                    <input id="date" type="date" value="2024-01-10" name="date_start">
                 </div>
                 <div class="select_date">
-                    <input id="date" type="date" value="<?php echo date('Y-m-d'); ?>" name="date_end">
+                    <input id="date" type="date" value="<?php echo $training_date;?>" name="date_end">
                 </div>
                 <div class="select_date">
                     <input class="button_all" type="submit" name="submit" value="Показать">
@@ -48,7 +53,8 @@
             <form class="form_action" action="do.php" method="post">
                 <p>Посмотреть день тренировки</p>
                 <div class="select_date">
-                    <input id="date" type="date" value="<?php echo date('Y-m-d'); ?>" name="date">
+                
+                    <input id="date" type="date" value="<?php echo $training_date; ?>" name="date">
                 </div>
                 <div class="select_date">
                     <input class="button_all" type="submit" name="visit_d" value="Показать">
@@ -59,10 +65,10 @@
 
                     <p>Посмотреть статистику пощений за период</p>
                     <div class="select_date">
-                        <input class='center' id="date" type="date" value="2023-01-09" name="date_start">
+                        <input class='center' id="date" type="date" value="2024-01-10" name="date_start">
                     </div>
                     <div class="select_date">
-                        <input class='center' id="date" type="date" value="<?php echo date('Y-m-d'); ?>" name="date_end">
+                        <input class='center' id="date" type="date" value="<?php echo $training_date;  ?>" name="date_end">
                     </div>
                     <div class="select_date">
                         <input class="button_all" type="submit" name="all" value="Показать">
