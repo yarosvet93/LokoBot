@@ -17,7 +17,9 @@ if  (!($check_update['update_id'])){
         $str1 = "help";
         $str2 = "addplayer";
         $str3 = "test";
-        $str4 = "add";
+        //$str4 = "add";
+        $str5 = "disable";
+        $str6 = "enable";
         //$str3 = "stopnextday";
         //
         // остановить опрос 
@@ -46,22 +48,29 @@ if  (!($check_update['update_id'])){
         //    $name = $update['message']['from']['first_name'];
         //    $db->exec("INSERT INTO tb_json (update_id, update_text) VALUES ('test','$name')"); 
         // }
-        if ($pieces[0] == $str4){
-        $fio = $pieces[1];
-        $user_id = $update['message']['from']['id'];
-        $username = $update['message']['from']['username'];
-        $first_name = $update['message']['from']['first_name'];
-        $last_name = $update['message']['from']['last_name'];
-        $check_user = $db->query_once("SELECT id FROM tb_players WHERE id_user = '$user_id'");
-        $id = $check_user['id'];
-            if (!($id)){
-                $db->exec("INSERT INTO tb_players (id_user, username, fname, sname, fio) 
-                    VALUES ('$user_id' , '$username' , '$first_name' , '$last_name' , '$fio')"); 
-                file_get_contents($url . "/sendmessage?chat_id=" . $user_id . "&text= СПС! Добавил.)");  
-            } else {
-                file_get_contents($url . "/sendmessage?chat_id=" . $user_id . "&text=Ты уже есть в Базе !)");
-            }
+        if ($pieces[0] == $str5 and  $check_admin == '111895196'){
+            $db->exec("UPDATE tb_config SET enabled_poll = 0 WHERE chat_id_my = '111895196'") ;
         }
+        if ($pieces[0] == $str6 and  $check_admin == '111895196'){
+            $db->exec("UPDATE tb_config SET enabled_poll = 1 WHERE chat_id_my = '111895196'") ;
+        }
+
+        // if ($pieces[0] == $str4){
+        // $fio = $pieces[1];
+        // $user_id = $update['message']['from']['id'];
+        // $username = $update['message']['from']['username'];
+        // $first_name = $update['message']['from']['first_name'];
+        // $last_name = $update['message']['from']['last_name'];
+        // $check_user = $db->query_once("SELECT id FROM tb_players WHERE id_user = '$user_id'");
+        // $id = $check_user['id'];
+        //     if (!($id)){
+        //         $db->exec("INSERT INTO tb_players (id_user, username, fname, sname, fio) 
+        //             VALUES ('$user_id' , '$username' , '$first_name' , '$last_name' , '$fio')"); 
+        //         file_get_contents($url . "/sendmessage?chat_id=" . $user_id . "&text= СПС! Добавил.)");  
+        //     } else {
+        //         file_get_contents($url . "/sendmessage?chat_id=" . $user_id . "&text=Ты уже есть в Базе !)");
+        //     }
+        // }
     }
     if ($update['poll_answer']) {
         $poll = $update['poll_answer'];

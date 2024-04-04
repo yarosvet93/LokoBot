@@ -16,6 +16,7 @@ $time_t = $config['time_t'];
 $apiToken = $config['apitoken'];
 $apiToken_Anosova = $config['apitoken_anosova'];
 $apiToken_LokoChat = $config['apitoken_lokochat'];
+$enabled_poll = $config['enabled_poll'];
 $testurl = "https://api.telegram.org/bot$apiToken_Anosova";
 $url = "https://api.telegram.org/bot$apiToken";
 $rugby = "\xF0\x9F\x8F\x89";

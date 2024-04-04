@@ -28,4 +28,4 @@ $data = [
 ];
 $url2 = $url . "/sendMessage?" . http_build_query($data);
 $response = Message::send($url2);
-$db->exec("INSERT INTO tb_json (update_id, update_text) VALUES ('sendtext','$response')"); 
+$db->exec("INSERT INTO tb_json (update_id, update_text) VALUES ('sendtext','$response')");
