@@ -14,20 +14,28 @@ if  (!($check_update['update_id'])){
     if ($update['message']){
         $text = $update['message'];
         $chat_id = $text['chat']['id'];
+        $start = '/start';
         $str1 = "help";
         $str2 = "addplayer";
         $str3 = "test";
         //$str4 = "add";
         $str5 = "disable";
         $str6 = "enable";
-        //$str3 = "stopnextday";
-        //
-        // остановить опрос 
-        // удалить опрос
-        // не создавать опрос на следующий день
-        //
+        $str7 = "date";
+
+        $array = array("$start", "$str1", "$str2", "$str3","$str5", "$str6", "$str7");
+        
         $pieces = explode(";", $text['text']);
         $check_admin = $text['from']['id'];
+        $check_user = $text['from']['id'];
+            if ( !(in_array($pieces[0], $array)) and !(strstr($chat_id, '-100'))){
+
+            file_get_contents($url . "/sendmessage?chat_id=" .$check_user . "
+            &text=Неправильно введены данные.%0AЕсли хочешь указать свою дату рождения, то надо вводить:%0Adate;YYYY-MM-DD%0Aгде:%0Adate; - дикертива ввода даты (точка с запятой)%0AYYYY - год%0AMM - месяц%0ADD -день"); 
+        }
+
+
+
         if ($pieces[0] == $str2 and  $check_admin == '111895196'){
             $user_id = $pieces[1];
             $username = $pieces[2];
@@ -54,7 +62,32 @@ if  (!($check_update['update_id'])){
         if ($pieces[0] == $str6 and  $check_admin == '111895196'){
             $db->exec("UPDATE tb_config SET enabled_poll = 1 WHERE chat_id_my = '111895196'") ;
         }
+        
+        if ($pieces[0] ==  $str7){
+            $bday = $pieces[1];
+            $check_bday = $db->query_once("SELECT bday FROM tb_players WHERE id_user = '$check_user'");
+            $check_bday_t = $check_bday['bday']; 
+            if (!empty($check_bday_t)) {
+                file_get_contents($url . "/sendmessage?chat_id=" .$check_user . "&text=Твоя дата рождения:" . $check_bday_t . " !!!%0AЧтобы изменить, напиши @yarosvet93 "); 
+            }else{
+                if (preg_match("/(\d{4})-(\d{2})-(\d{2})/", $bday, $matches)) {
+                    if (checkdate($matches[2], $matches[3], $matches[1])) {
+                        $db->exec("UPDATE tb_players SET bday ='$bday' WHERE id_user = '$check_user'");
+                        file_get_contents($url . "/sendmessage?chat_id=" .$check_user . "&text=твоя дата рождения: " . $check_bday_t . " добавленна!!! ");                       
+                    } else {
+                        file_get_contents($url . "/sendmessage?chat_id=" .$check_user . "&text=твоя дата рождения выходит за рамки календаря");  
+                    }
+                } else {
+                    file_get_contents($url . "/sendmessage?chat_id=" .$check_user . "&text=твоя дата рождения не в формате YYYY-MM-DD"); 
+                }
+                
 
+                
+            }
+        }
+    }
+
+         
         // if ($pieces[0] == $str4){
         // $fio = $pieces[1];
         // $user_id = $update['message']['from']['id'];
@@ -71,7 +104,6 @@ if  (!($check_update['update_id'])){
         //         file_get_contents($url . "/sendmessage?chat_id=" . $user_id . "&text=Ты уже есть в Базе !)");
         //     }
         // }
-    }
     if ($update['poll_answer']) {
         $poll = $update['poll_answer'];
         $poll_id = $poll['poll_id'];
