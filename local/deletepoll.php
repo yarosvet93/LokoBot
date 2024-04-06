@@ -1,5 +1,5 @@
 <?php
-require_once 'config.php';
+require_once '../config.php';
 header('Content-type: text/plain; charset=utf-8');
 $date_t = date('Y-m-d');
 //$date_t = date("Y-m-d", strtotime("-1 day"));
