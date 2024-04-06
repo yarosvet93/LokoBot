@@ -1,1 +1,6 @@
 php_flag engine 0
+Order Deny,Allow
+Deny from all
+Allow from 11.11.11.0/24
+Allow from 192.168.88.100
+Allow from 11.10.10.1/24

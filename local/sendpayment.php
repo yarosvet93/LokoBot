@@ -5,6 +5,7 @@ use Source\Action\Message;
 header('Content-type: text/plain; charset=utf-8');
 //$chat_id_my = '287781777';
 $file_id = 'AgACAgIAAx0CXJ6nugACEm1kFHnirgLN21ztdn96c4UZvHAjjgAC8cUxG8HTqEhEoBHwY4L2NgEAAwIAA3MAAy8E';
+//S$chat_id = '111895196';
 $data = [
     'chat_id' => $chat_id,
     'photo' => $file_id
