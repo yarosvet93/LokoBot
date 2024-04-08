@@ -10,11 +10,9 @@ $data = [
     'chat_id' => $chat_id,
     'photo' => $file_id
 ];	
-$url1 = $url . "/sendPhoto?" . http_build_query($data);
-$response = Message::send($url1);
+$response = Message::send($url . "/sendPhoto?" . http_build_query($data));
 $db->exec("INSERT INTO tb_json (update_id, update_text) VALUES ('sendPhoto','$response')"); 
-$message = '2200 7010 2268 1248';
-$message ="Мужчины, не забываем про взносы.\n".
+$data = "Мужчины, не забываем про взносы.\n".
 "Отправлять на ТИНЬКОФФ\n" . 
 "по номеру карты:\n" . 
 "2200 7010 2268 1248\n" . 
@@ -25,8 +23,7 @@ $message ="Мужчины, не забываем про взносы.\n".
 "от кого ( Фамилия Имя )";
 $data = [
 	'chat_id' => $chat_id,
-    'text' => $message
+    'text' => $data
 ];
-$url2 = $url . "/sendMessage?" . http_build_query($data);
-$response = Message::send($url2);
+$response = Message::send($url . "/sendMessage?" . http_build_query($data));
 $db->exec("INSERT INTO tb_json (update_id, update_text) VALUES ('sendtext','$response')");
