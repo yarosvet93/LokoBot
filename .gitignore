@@ -3,7 +3,6 @@
 /composer*
 /.vscode
 /test
-/anosova
 .env
 hook.txt
 result.txt
@@ -15,5 +14,5 @@ testhook.php
 test.php
 db.php
 test_index.php
-anosova_hook.php
 **/.htaccess
+/anosova/config.php
