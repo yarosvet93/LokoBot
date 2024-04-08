@@ -3,6 +3,7 @@
 /composer*
 /.vscode
 /test
+/anosova
 .env
 hook.txt
 result.txt
