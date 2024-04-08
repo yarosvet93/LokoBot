@@ -3,7 +3,6 @@ require_once 'config.php';
 require_once 'src/Messages.php';
 require_once 'src/Poll.php';
 use Source\Action\Message;
-use Source\Action\Poll;
 header('Content-type: text/plain; charset=utf-8');
 $date_t = date('Y-m-d');
 //$date_t = date("Y-m-d", strtotime("-1 day"));
