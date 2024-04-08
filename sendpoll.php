@@ -1,7 +1,7 @@
 <?php
-require_once '../config.php';
-require_once '../src/Messages.php';
-require_once '../src/Poll.php';
+require_once 'config.php';
+require_once 'src/Messages.php';
+require_once 'src/Poll.php';
 use Source\Action\Message;
 use Source\Action\Poll;
 header('Content-type: text/plain; charset=utf-8');
@@ -29,7 +29,7 @@ $data = [
 	$get = Poll::getJsonPoll($response);
 	$poll_id = $get['poll_id'];
 	$poll_message = $get['poll_message'];
-	$chat_id = $get['chat_id'];
+	//$chat_id = $get['chat_id'];
 	$date_t = date('Y-m-d');
 	//$date_t = date("Y-m-d", strtotime("-1 day"));
 	$week = date('W');

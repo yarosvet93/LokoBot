@@ -1,6 +1,6 @@
 <?php
-require_once '../config.php';
-require_once '../src/Messages.php';
+require_once 'config.php';
+require_once 'src/Messages.php';
 use Source\Action\Message;
 header('Content-type: text/plain; charset=utf-8');
 //$chat_id_my = '287781777';
