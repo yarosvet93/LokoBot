@@ -7,7 +7,7 @@ function backslash_to_mysql ($result){
     return preg_replace($pattern, $replacement, $result);
 }
 
-function poll_answer ($update){
+function poll_answer_proc ($update){
     global $db, $yes, $no, $sick, $url;
     $poll = $update['poll_answer'];
     $poll_id = $poll['poll_id'];
@@ -56,7 +56,7 @@ function poll_answer ($update){
 }
 
 
-function message ($update){
+function message_proc ($update){
     global $db, $url;
     $message = $update['message'];
     $chat_id = $message['chat']['id'];

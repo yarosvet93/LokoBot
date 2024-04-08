@@ -16,10 +16,10 @@ if  (!($check_update['update_id'])){
     $db->exec("INSERT INTO tb_json (update_id, update_text) VALUES ('$update_id','$asnwer')");
     // если пришло сообщение
     if ($update['message']){
-        message ($update);
+        message_proc ($update);
     }
     if ($update['poll_answer']) {
-        poll_answer ($update);
+        poll_answer_proc ($update);
     }
 }
 // unset($asnwer);
