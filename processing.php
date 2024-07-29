@@ -1,6 +1,26 @@
 <?php
 require_once 'config.php';
 
+function send_message ($chat_id,$text){
+    global $url, $db;
+$data = http_build_query([ 'chat_id' => $chat_id,'text' => $text]);	
+$response = backslash_to_mysql(file_get_contents($url . "/sendMessage?" . $data));
+$db->exec("INSERT INTO tb_json (update_id, update_text) VALUES ('sendText','$response')");
+} 
+
+function send_photo ($chat_id,$photo_id){
+    global $url, $db;
+$data = http_build_query([ 'chat_id' => $chat_id,'photo' => $photo_id]);	
+$response = backslash_to_mysql(file_get_contents($url . "/sendPhoto?" . $data));
+$db->exec("INSERT INTO tb_json (update_id, update_text) VALUES ('sendPhoto','$response')");
+} 
+
+function delete_message ($chat_id,$message_id){
+    global $url;
+$data = http_build_query([ 'chat_id' => $chat_id,'message_id' => $message_id]);	
+file_get_contents($url . "/deleteMessage?" . $data);
+} 
+
 function backslash_to_mysql ($result){
     $pattern ='/(\\\)/';
     $replacement='\\\\\\';
@@ -82,8 +102,7 @@ function message_proc ($update){
             "MM - месяц\n" . 
             "DD -день\n";
 
-        $data = http_build_query(['text' => $data, 'chat_id' => $check_user]);
-        file_get_contents($url . "/sendMessage?" . $data);
+        send_message($check_user,$data);
     }
 
          
@@ -119,8 +138,7 @@ function message_proc ($update){
     if ($pieces[0] == $str1 and  $check_admin == '111895196'){
         $data = "Add user in tb_players:\n" . 
                 "Addplayer;id;username;fname;sname;Фамилия Имя Отчество;Фамилия Имя";
-        $data = http_build_query(['text' => $data, 'chat_id' => $chat_id]);
-        file_get_contents($url . "/sendmessage?" . $data ); 
+                send_message($chat_id,$data);
     }
 
     //if ($pieces[0] == $str3){
@@ -139,17 +157,17 @@ function message_proc ($update){
         $check_bday = $db->query_once("SELECT bday FROM tb_players WHERE id_user = '$check_user'");
         $check_bday_t = $check_bday['bday']; 
         if (!empty($check_bday_t)) {
-            file_get_contents($url . "/sendmessage?chat_id=" .$check_user . "&text=Твоя дата рождения:" . $check_bday_t . " !!!%0AЧтобы изменить, напиши @yarosvet93 "); 
+            send_message($check_user, "Твоя дата рождения:" . $check_bday_t . " !!!\nЧтобы изменить, напиши @yarosvet93");
         }else{
             if (preg_match("/(\d{4})-(\d{2})-(\d{2})/", $bday, $matches)) {
                 if (checkdate($matches[2], $matches[3], $matches[1])) {
                     $db->exec("UPDATE tb_players SET bday ='$bday' WHERE id_user = '$check_user'");
-                    file_get_contents($url . "/sendmessage?chat_id=" .$check_user . "&text=твоя дата рождения: " . $check_bday_t . " добавленна!!! ");                       
+                    send_message($check_user,"твоя дата рождения: " . $dbay . " добавлена!!! ");                       
                 } else {
-                    file_get_contents($url . "/sendmessage?chat_id=" .$check_user . "&text=твоя дата рождения выходит за рамки календаря");  
+                    send_message($check_user,"твоя дата рождения выходит за рамки календаря");  
                 }
             } else {
-                file_get_contents($url . "/sendmessage?chat_id=" .$check_user . "&text=твоя дата рождения не в формате YYYY-MM-DD"); 
+                send_message($check_user,"твоя дата рождения не в формате YYYY-MM-DD"); 
             }
             
 

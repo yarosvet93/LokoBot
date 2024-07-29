@@ -5,7 +5,7 @@ header('Content-type: text/plain; charset=utf-8');
 $nextweek= strtotime("+7 day");
 $date_nextweek = date("m-d",$nextweek);
 $date = date("m-d");
-$chat_ids = array ("111895196" ,"267638282" ,"287781777");
+$chat_ids = array ("111895196" ,"267638282" ,"287781777","261332126");
 $message ='';
 
 $check_bday = $db->query("SELECT * FROM tb_players WHERE DATE_FORMAT(bday, '%m-%d') between '$date' and '$date_nextweek'");

@@ -4,7 +4,7 @@ header('Content-type: text/plain; charset=utf-8');
 //$chat_id_my = '267638282 Овчинников Владимир';
 $morrow= strtotime("+1 day");
 $date = date("m-d",$morrow);
-$chat_ids = array ("111895196" ,"267638282" ,"287781777");
+$chat_ids = array ("111895196" ,"267638282" ,"287781777","261332126");
 $message ='';
 $check_bday = $db->query("SELECT * FROM tb_players WHERE DATE_FORMAT(bday, '%m-%d') = '$date'");
 if (!empty($check_bday)){ 
