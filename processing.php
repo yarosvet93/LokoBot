@@ -162,7 +162,7 @@ function message_proc ($update){
             if (preg_match("/(\d{4})-(\d{2})-(\d{2})/", $bday, $matches)) {
                 if (checkdate($matches[2], $matches[3], $matches[1])) {
                     $db->exec("UPDATE tb_players SET bday ='$bday' WHERE id_user = '$check_user'");
-                    send_message($check_user,"твоя дата рождения: " . $dbay . " добавлена!!! ");                       
+                    send_message($check_user,"твоя дата рождения: " . $bday . " добавлена!!! ");                       
                 } else {
                     send_message($check_user,"твоя дата рождения выходит за рамки календаря");  
                 }
