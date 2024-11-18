@@ -8,13 +8,13 @@ class Poll {
         $week = date('W');
         switch ($weekday) {
             case 'Monday':
-                $place = 'в Манеже';
+                $place = 'в Зябликово';
                 break;
             case 'Wednesday':
-                $place = 'в Зале';
+                $place = 'в Зябликово';
                 break;
             case 'Friday':
-                $place = 'в Манеже';
+                $place = 'в Зябликово';
                 break;
         }; // Monday ; Tuesday; Wednesday ; Thursday ; Friday ; Saturday ; Sunday
         return $place;

@@ -83,7 +83,7 @@ function message_proc ($update){
     $start = '/start';
     $str1 = "help";
     $str2 = "addplayer";
-    $str3 = "test";
+    $str3 = "get-user";
     //$str4 = "add";
     $str5 = "disable";
     $str6 = "enable";
@@ -122,8 +122,18 @@ function message_proc ($update){
     //         file_get_contents($url . "/sendmessage?chat_id=" . $user_id . "&text=Ты уже есть в Базе !)");
     //     }
     // }
+    if ($pieces[0] == $str3 and  $check_admin == '111895196'){
+        // $user_get = $db->query("SELECT * FROM tb_players");
+        // $user_get_all = '';
+        // foreach ($user_get AS $user){ 
+        //     $user_get_all .= $user['id_user'];
+        //     $user_get_all .= ' - ';
+        //     $user_get_all .= $user['fio'];
+        //     $user_get_all .= "\n";
+        // } 
+        // send_message($check_admin,$user_get_all); 
 
-
+    }
     if ($pieces[0] == $str2 and  $check_admin == '111895196'){
         $user_id = $pieces[1];
         $username = $pieces[2];
