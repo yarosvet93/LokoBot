@@ -8,6 +8,13 @@ $response = backslash_to_mysql(file_get_contents($url . "/sendMessage?" . $data)
 $db->exec("INSERT INTO tb_json (update_id, update_text) VALUES ('sendText','$response')");
 } 
 
+function forwardmessage ($chat_id,$from_chat_id,$message_id){
+    global $url, $db;
+$data = http_build_query([ 'chat_id' => $chat_id,'from_chat_id' => $from_chat_id,'message_id' => $message_id]);	
+$response = backslash_to_mysql(file_get_contents($url . "/forwardMessage?" . $data));
+$db->exec("INSERT INTO tb_json (update_id, update_text) VALUES ('forwardMessage','$response')");
+} 
+
 function send_photo ($chat_id,$photo_id){
     global $url, $db;
 $data = http_build_query([ 'chat_id' => $chat_id,'photo' => $photo_id]);	

@@ -10,6 +10,7 @@ $Friday = $config['friday'];
 $chat_id_girl =  $config['chat_id_girl'];
 $chat_id = $config['chat_id']; # Boltovnya
 $chat_id_my =  $config['chat_id_my'];
+$chat_id_loco =  $config['chat_id_loco'];
 $chat_id_anosova = $config['chat_id_anosova']; # anosova
 $chat_id_treni = $config['chat_id_treni'];
 $time_t = $config['time_t'];
