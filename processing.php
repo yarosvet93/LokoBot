@@ -3,7 +3,7 @@ require_once 'config.php';
 
 function send_message ($chat_id,$text){
     global $url, $db;
-$data = http_build_query([ 'chat_id' => $chat_id,'text' => $text]);	
+$data = http_build_query([ 'chat_id' => $chat_id,'text' => $text,'parse_mode' => 'HTML']);	
 $response = backslash_to_mysql(file_get_contents($url . "/sendMessage?" . $data));
 $db->exec("INSERT INTO tb_json (update_id, update_text) VALUES ('sendText','$response')");
 } 
