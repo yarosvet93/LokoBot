@@ -12,7 +12,7 @@ $data = "Мужчины, напоминаю о возносах!\n".
 "💳 по номеру карты: 👇\n" .
 "<code>           2200 7001 5281 2763</code>\n\n" . 
 "📎 или через сайт: 👇\n" . 
-'https://www.tbank.ru/rm/r_lfwAHXWqDG.nlkeHfkEwA/UTHN534456' . "\n\n" . 
+'https://www.tinkoff.ru/rm/r_lfwAHXWqDG.nlkeHfkEwA/KZWdA43028' . "\n\n" . 
 "☎️ или по телефону👇 (можно через СБП):\n" .
 "<code>           +79265533337</code> \n".
 "на имя Роман Игоревич О.\n\n" .
